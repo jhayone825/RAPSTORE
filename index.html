@@ -1,1 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAP STORE | Premium Residential Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap');
+        
+        body { background-color: #05070a; color: white; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; overflow-x: hidden; }
+        .checkout-body { background-color: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; display: none; min-height: 100vh; }
+        
+        .btn-blue { background: #2563eb; transition: all 0.3s ease; }
+        .card-plan { background: #0f172a; border: 1px solid #1e293b; }
+        
+        /* Chat Styling */
+        #chat-window { display: none; position: fixed; bottom: 90px; right: 20px; width: 320px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; z-index: 1001; box-shadow: 0 15px 40px rgba(0,0,0,0.6); color: white; }
+        .chat-header { background: #2563eb; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { height: 250px; padding: 15px; overflow-y: auto; font-size: 0.85rem; background: #0d1117; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+        .msg-bot { background: #21262d; padding: 8px 12px; border-radius: 12px 12px 12px 0; align-self: flex-start; max-width: 85%; }
+        .msg-user { background: #2563eb; padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; }
+        .chat-input { border-top: 1px solid #30363d; padding: 10px; background: #161b22; display: flex; gap: 8px; }
+        .chat-bubble { position: fixed; bottom: 20px; right: 20px; background: #2563eb; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); cursor: pointer; z-index: 1000; }
+        
+        /* Notification Toast */
+        #activity-toast { position: fixed; bottom: 100px; left: 20px; background: #1e293b; border: 1px solid #3b82f6; padding: 12px 16px; border-radius: 8px; display: none; font-size: 0.75rem; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.5); animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
+        /* Crypto Modal */
+        #crypto-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 520px; border-radius: 16px; padding: 30px; color: #1e293b; position: relative; }
+        .crypto-row { background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .address-text { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #475569; word-break: break-all; max-width: 85%; }
+        .copy-btn { font-size: 0.75rem; color: #2563eb; cursor: pointer; padding: 6px; border-radius: 4px; background: #eff6ff; width: 30px; text-align: center; }
+
+        #verify-screen { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .spinner { width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="crypto-modal">
+        <div id="verify-screen">
+            <div class="spinner"></div>
+            <h3 class="text-xl font-bold text-white mb-2">Initiating Infrastructure Handshake...</h3>
+            <p class="text-slate-400 text-sm font-mono">Allocating residential tunnel nodes...</p>
+        </div>
+
+        <div class="modal-content" id="payment-content" style="display: none;">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-xl font-bold mb-1">Payment Required</h3>
+            <p class="text-xs text-slate-500 mb-5 text-center italic">Session: <span class="font-bold">Real Madrid Friday</span></p>
+            
+            <div class="max-h-[380px] overflow-y-auto pr-2">
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-orange-500 uppercase">Bitcoin (BTC)</p><p class="address-text" id="btc-addr">bc1qt7zlwlmamph8vt4d0dwdjjnq8yehgvjr6883va</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('btc-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-indigo-500 uppercase">Ethereum (ETH)</p><p class="address-text" id="eth-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('eth-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-purple-500 uppercase">Solana (SOL)</p><p class="address-text" id="sol-addr">37TkwujqyjCCREcUePrWeHVMwU3ZUuGUrUR9xzbbpmAH</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('sol-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-yellow-600 uppercase">BNB (BEP20)</p><p class="address-text" id="bnb-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('bnb-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-teal-600 uppercase">USDT (ERC20/BEP20)</p><p class="address-text" id="usdt-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('usdt-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-blue-500 uppercase">USDC (ERC20/BEP20)</p><p class="address-text" id="usdc-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('usdc-addr', this)"></i>
+                </div>
+                <div class="crypto-row">
+                    <div><p class="text-[9px] font-bold text-blue-400 uppercase">Litecoin (LTC)</p><p class="address-text" id="ltc-addr">ltc1q7tk45fa8mpnp72trrx6rvqgdudfsyrezug83yq</p></div>
+                    <i class="fa-solid fa-copy copy-btn" onclick="copyText('ltc-addr', this)"></i>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg flex items-center gap-3">
+                <i class="fa-solid fa-circle-notch fa-spin text-blue-500 text-xs"></i>
+                <p class="text-[10px] text-blue-700 font-medium">Gateway: Monitoring Blockchain confirmations. Do not close.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="activity-toast">
+        <div class="flex items-center gap-3">
+            <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span id="activity-text">User 0x4f...a2 activated Resident License</span>
+        </div>
+    </div>
+
+    <div id="homepage">
+        <div id="chat-window">
+            <div class="chat-header"><span>Soporte Técnico RAP</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="chat-body" id="chat-msgs">
+                <div class="msg-bot">Hola. El sistema está listo para el evento del viernes. ¿En qué podemos ayudarte?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Escribe tu duda..." class="bg-transparent border-none outline-none text-xs flex-1 text-white">
+                <button onclick="userSendMessage()"><i class="fa-solid fa-paper-plane text-blue-500"></i></button>
+            </div>
+        </div>
+        <div class="chat-bubble" onclick="toggleChat()"><i class="fa-solid fa-comment-dots text-2xl text-white"></i></div>
+
+        <nav class="sticky top-0 z-50 px-6 py-4 bg-[#05070a]/80 backdrop-blur-md border-b border-slate-900 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg"><i class="fa-solid fa-network-wired text-white"></i></div>
+                <span class="text-xl font-extrabold tracking-tight italic">RAP<span class="text-blue-500">STORE</span></span>
+            </div>
+            <button class="btn-blue px-6 py-2 rounded-full text-sm font-bold uppercase">Consola</button>
+        </nav>
+
+        <header class="max-w-4xl mx-auto px-6 py-20 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Acceso Residencial Premium</h1>
+            <p class="text-slate-400 text-lg mb-10">Bypass de colas optimizado para Real Madrid.</p>
+        </header>
+
+        <section class="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-2 gap-8">
+            <div class="card-plan p-10 rounded-3xl opacity-40">
+                <h3 class="text-xs uppercase font-black text-slate-500 mb-2">Free</h3>
+                <div class="text-4xl font-bold mb-6">$0</div>
+                <p class="text-sm text-red-400 mb-6 font-bold">● IP de DataCenter Bloqueada</p>
+                <div class="w-full py-4 text-center border border-slate-800 rounded-xl font-bold text-slate-600 text-sm">ACTUAL</div>
+            </div>
+
+            <div class="card-plan p-10 rounded-3xl border-blue-600 shadow-2xl shadow-blue-900/20">
+                <h3 class="text-xs uppercase font-black text-blue-500 mb-2">Residencial</h3>
+                <div class="text-4xl font-bold mb-6">$47</div>
+                <ul class="text-sm space-y-3 mb-10">
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Bypass Queue Engine v4.1</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Handshake 100% Garantizado</li>
+                </ul>
+                <button onclick="showCheckout()" class="btn-blue w-full py-4 rounded-xl font-bold text-sm uppercase">Comprar Licencia</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="checkout-section" class="checkout-body">
+        <div class="max-w-[900px] mx-auto px-5 pt-6 flex justify-between items-center text-[#1e293b]">
+            <div class="flex items-center gap-2 font-black text-lg italic"><span class="bg-blue-600 text-white px-2 py-0.5 rounded">RAP</span> STORE</div>
+            <select class="lang-select" id="languageSelector" onchange="translatePage()">
+                <option value="en">English</option><option value="es" selected>Español</option>
+            </select>
+        </div>
+        <div class="checkout-container">
+            <div class="payment-box">
+                <h2 class="text-xl font-bold mb-6" id="txt-payment">Método de Pago</h2>
+                <div class="border-2 border-blue-500 rounded-lg p-4 bg-blue-50"><p class="font-bold text-sm">Cripto Transferencia Global</p></div>
+                <div class="mt-8">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2">Email del Licencia</label>
+                    <input type="email" id="email-field" placeholder="email@example.com" class="w-full border border-slate-300 rounded-lg p-3 outline-none focus:border-blue-500 text-[#1e293b]">
+                </div>
+                <button onclick="startVerification()" class="btn-blue w-full mt-8 py-4 rounded-lg font-bold text-white uppercase">Finalizar Pedido</button>
+            </div>
+            <div class="order-summary text-[#1e293b]">
+                <h2 class="text-lg font-bold mb-6">Resumen</h2>
+                <div class="flex justify-between text-sm mb-4"><span>Licencia RAP</span><span class="font-bold">$47.00</span></div>
+                <div class="flex justify-between text-lg font-extrabold"><span>Total</span><span>$47.00</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const notificationSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+
+        function toggleChat() { document.getElementById('chat-window').style.display = (document.getElementById('chat-window').style.display === 'block') ? 'none' : 'block'; }
+        function showCheckout() { document.getElementById('homepage').style.display = 'none'; document.getElementById('checkout-section').style.display = 'block'; window.scrollTo(0,0); }
+        function startVerification() { 
+            if(document.getElementById('email-field').value.includes('@')) {
+                document.getElementById('crypto-modal').style.display = 'flex';
+                document.getElementById('verify-screen').style.display = 'flex';
+                setTimeout(() => { document.getElementById('verify-screen').style.display = 'none'; document.getElementById('payment-content').style.display = 'block'; }, 3000);
+            } else { alert('Email requerido.'); }
+        }
+        function closeModal() { document.getElementById('crypto-modal').style.display = 'none'; }
+        function copyText(id, btn) { 
+            navigator.clipboard.writeText(document.getElementById(id).innerText); 
+            btn.classList.replace('fa-copy', 'fa-check');
+            setTimeout(() => btn.classList.replace('fa-check', 'fa-copy'), 2000);
+        }
+
+        const feeds = ["User 0x9a...2e activated Friday Pass", "New license issued for node 102.12", "User jp***@gmail.com activated bypass", "Handshake success on BEP20 network"];
+        setInterval(() => {
+            const toast = document.getElementById('activity-toast');
+            document.getElementById('activity-text').innerText = feeds[Math.floor(Math.random() * feeds.length)];
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 5000);
+        }, 25000);
+
+        function userSendMessage() {
+            const input = document.getElementById('chat-input-field');
+            const msg = input.value.trim().toLowerCase();
+            if(!msg) return;
+            addMsg(input.value, 'user');
+            input.value = '';
+            setTimeout(() => {
+                let reply = "No entiendo tu consulta. Un agente técnico revisará tu caso en breve.";
+                if(msg.includes('hola')) reply = "Hola. ¿Necesitas ayuda con la licencia para el viernes?";
+                if(msg.includes('precio') || msg.includes('cuanto')) reply = "La licencia residencial premium tiene un costo de $47 USD para el evento de este viernes.";
+                if(msg.includes('pagar') || msg.includes('pago')) reply = "Aceptamos pagos en Cripto (BTC, ETH, SOL, LTC, etc) para activación instantánea.";
+                if(msg.includes('funciona')) reply = "Nuestro sistema utiliza túneles residenciales para saltar la cola de espera (Queue-it/Akamai) del Real Madrid.";
+                addMsg(reply, 'bot');
+            }, 1000);
+        }
+
+        function addMsg(text, type) {
+            const chatBody = document.getElementById('chat-msgs');
+            const div = document.createElement('div');
+            div.className = type === 'bot' ? 'msg-bot' : 'msg-user';
+            div.innerText = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            if(type === 'bot') {
+                notificationSound.play().catch(e => console.log("Audio requires user interaction first."));
+            }
+        }
+
+        document.getElementById('chat-input-field').addEventListener("keypress", (e) => { if (e.key === "Enter") userSendMessage(); });
+        
+        // Initial bot greeting sound after 3 seconds
+        setTimeout(() => { notificationSound.play().catch(e => {}); }, 3000);
+    </script>
+</body>
+</html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>RAP GATEWAY | Premium Residential Node Access</title>
     <meta name="title" content="RAP GATEWAY | Premium Residential Node Access">
-    <meta name="description" content="Enterprise-grade residential tunnel allocation for high-demand event ticketing. Optimized for Real Madrid CF sessions.">
+    <meta name="description" content="Enterprise-grade residential tunnel allocation for high-demand event ticketing. Optimized for LiverpoolFC and Arsenal sessions.">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="RAP GATEWAY | Secure Infrastructure">
@@ -75,7 +75,7 @@
             
             <div class="grid md:grid-cols-5 gap-6">
                 <div class="md:col-span-3">
-                    <h3 class="text-xl font-bold mb-1">Finalizar Pedido</h3>
+                    <h3 class="text-xl font-bold mb-1">Finalize Order</h3>
                     <p class="text-[10px] text-slate-400 uppercase font-bold mb-4 tracking-widest">Global Proxy Infrastructure Access</p>
                     
                     <div class="max-h-[300px] overflow-y-auto pr-2 space-y-2">
@@ -106,7 +106,7 @@
                     <div class="space-y-3" id="ledger-box">
                         <div class="text-[9px] border-b border-slate-800 pb-2">
                             <div class="flex justify-between text-slate-400"><span>0x7...d1</span> <span class="text-green-500">Confirmed</span></div>
-                            <div class="flex justify-between text-white font-mono"><span>47.00 USD</span> <span>BTC</span></div>
+                            <div class="flex justify-between text-white font-mono"><span>120.00 USD</span> <span>BTC</span></div>
                         </div>
                     </div>
                     <div class="mt-4 pt-3 border-t border-slate-800">
@@ -130,14 +130,14 @@
 
     <div id="homepage">
         <div id="chat-window">
-            <div class="chat-header"><span data-key="chat_head">Soporte Técnico RAP</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="chat-header"><span id="chat-header-text">RAP Technical Support</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
             <div class="chat-body" id="chat-msgs"></div>
             
             <div id="chat-suggestions" class="px-3 pb-3 bg-[#0d1117] flex gap-2 overflow-x-auto no-scrollbar">
                 </div>
 
             <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="..." class="bg-transparent border-none outline-none text-xs flex-1 text-white">
+                <input type="text" id="chat-input-field" placeholder="Type a message..." class="bg-transparent border-none outline-none text-xs flex-1 text-white">
                 <button onclick="userSendMessage()"><i class="fa-solid fa-paper-plane text-blue-500"></i></button>
             </div>
         </div>
@@ -149,37 +149,33 @@
                 <span class="text-xl font-extrabold tracking-tight italic uppercase">RAP<span class="text-blue-500">Gateway</span></span>
             </div>
             <div class="flex items-center gap-4">
-                <select id="lang-toggle" onchange="changeLanguage()" class="bg-slate-900 border border-slate-700 text-[10px] rounded px-2 py-1 outline-none text-white">
-                    <option value="es">ESPAÑOL</option>
-                    <option value="en">ENGLISH</option>
-                </select>
                 <button class="btn-blue px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Status: Online</button>
             </div>
         </nav>
 
         <header class="max-w-4xl mx-auto px-6 py-24 text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight" data-key="hero_title">Acceso Residencial Premium</h1>
-            <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto" data-key="hero_sub">Infraestructura de bypass optimizada para el sistema de colas del Real Madrid CF.</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Premium Residential Access</h1>
+            <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Bypass infrastructure optimized for the LiverpoolFC queue system.</p>
         </header>
 
         <section class="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-2 gap-8">
             <div class="card-plan p-10 rounded-3xl opacity-30 cursor-not-allowed">
                 <h3 class="text-xs uppercase font-black text-slate-500 mb-2">Public Nodes</h3>
                 <div class="text-4xl font-bold mb-6">$0</div>
-                <p class="text-sm text-red-500 mb-6 font-bold" data-key="card_locked">● IP Bloqueada por Firewall</p>
+                <p class="text-sm text-red-500 mb-6 font-bold">● IP Blocked by Firewall</p>
                 <div class="w-full py-4 text-center border border-slate-800 rounded-xl font-bold text-slate-600 text-sm">NOT ELIGIBLE</div>
             </div>
 
             <div class="card-plan p-10 rounded-3xl border-blue-600 shadow-2xl shadow-blue-900/20 relative overflow-hidden">
                 <div class="absolute top-0 right-0 bg-blue-600 text-[10px] font-bold px-4 py-1 rounded-bl-lg uppercase">Optimized</div>
-                <h3 class="text-xs uppercase font-black text-blue-500 mb-2" data-key="card_res">Residential License</h3>
-                <div class="text-4xl font-bold mb-6">$47 <span class="text-sm text-slate-500 font-normal">/ session</span></div>
+                <h3 class="text-xs uppercase font-black text-blue-500 mb-2">Residential License</h3>
+                <div class="text-4xl font-bold mb-6">$120.00 <span class="text-sm text-slate-500 font-normal">/ session</span></div>
                 <ul class="text-sm space-y-3 mb-10 text-slate-300">
-                    <li data-key="feat_1"><i class="fa-solid fa-check text-green-500 mr-2"></i> Bypass Queue Engine v4.1</li>
-                    <li data-key="feat_2"><i class="fa-solid fa-check text-green-500 mr-2"></i> Handshake 100% Garantizado</li>
-                    <li data-key="feat_3"><i class="fa-solid fa-check text-green-500 mr-2"></i> Latencia Residencial < 30ms</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Bypass Queue Engine v4.1</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 100% Guaranteed Handshake</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Residential Latency < 30ms</li>
                 </ul>
-                <button onclick="showCheckout()" class="btn-blue w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-white" data-key="btn_buy">Adquirir Licencia</button>
+                <button onclick="showCheckout()" class="btn-blue w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-white">Get License</button>
             </div>
         </section>
     </div>
@@ -192,94 +188,55 @@
         
         <div class="max-w-[1000px] mx-auto grid md:grid-cols-3 gap-10 px-5 mt-12 pb-20">
             <div class="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-xl font-bold mb-6" data-key="pay_method">Método de Pago</h2>
+                <h2 class="text-xl font-bold mb-6">Payment Method</h2>
                 <div class="border-2 border-blue-500 rounded-xl p-5 bg-blue-50 flex items-center justify-between">
                     <div>
-                        <p class="font-bold text-sm text-blue-900">Cripto Transferencia Global</p>
-                        <p class="text-[11px] text-blue-700">Activación automática mediante escaneo de Hash.</p>
+                        <p class="font-bold text-sm text-blue-900">Global Crypto Transfer</p>
+                        <p class="text-[11px] text-blue-700">Automatic activation via Hash scanning.</p>
                     </div>
                     <i class="fa-brands fa-bitcoin text-2xl text-blue-600"></i>
                 </div>
                 
                 <div class="mt-10">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 tracking-widest" data-key="email_label">Email para Envío de Licencia</label>
-                    <input type="email" id="email-field" placeholder="ejemplo@correo.com" class="w-full border border-slate-200 rounded-xl p-4 outline-none focus:border-blue-500 text-[#1e293b] text-sm transition-all">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 tracking-widest">Email for License Delivery</label>
+                    <input type="email" id="email-field" placeholder="example@email.com" class="w-full border border-slate-200 rounded-xl p-4 outline-none focus:border-blue-500 text-[#1e293b] text-sm transition-all">
                 </div>
                 
-                <button onclick="startVerification()" class="btn-blue w-full mt-10 py-5 rounded-xl font-bold text-white uppercase tracking-widest text-sm shadow-lg shadow-blue-200" data-key="btn_final">Generar Portal de Pago</button>
+                <button onclick="startVerification()" class="btn-blue w-full mt-10 py-5 rounded-xl font-bold text-white uppercase tracking-widest text-sm shadow-lg shadow-blue-200">Generate Payment Portal</button>
             </div>
 
             <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 h-fit">
-                <h2 class="text-lg font-bold mb-6">Resumen del Nodo</h2>
+                <h2 class="text-lg font-bold mb-6">Node Summary</h2>
                 <div class="space-y-4 text-sm">
-                    <div class="flex justify-between text-slate-500"><span>Licencia Residencial</span><span class="font-bold text-slate-800">$47.00</span></div>
-                    <div class="flex justify-between text-slate-500"><span>Fee de Red</span><span class="font-bold text-green-600">FREE</span></div>
+                    <div class="flex justify-between text-slate-500"><span>Residential License</span><span class="font-bold text-slate-800">$120.00</span></div>
+                    <div class="flex justify-between text-slate-500"><span>Network Fee</span><span class="font-bold text-green-600">FREE</span></div>
                     <hr class="border-slate-200">
-                    <div class="flex justify-between text-xl font-black text-[#1e293b] pt-2"><span>Total</span><span>$47.00</span></div>
+                    <div class="flex justify-between text-xl font-black text-[#1e293b] pt-2"><span>Total</span><span>$120.00</span></div>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-8 leading-relaxed italic">Al proceder, el sistema asignará una IP residencial única a su correo electrónico durante 24 horas.</p>
+                <p class="text-[10px] text-slate-400 mt-8 leading-relaxed italic">By proceeding, the system will assign a unique residential IP to your email for 24 hours.</p>
             </div>
         </div>
     </div>
 
     <script>
         const notificationSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-        let currentLang = 'es';
 
-        const i18n = {
-            es: {
-                hero_title: "Acceso Residencial Premium",
-                hero_sub: "Infraestructura de bypass optimizada para el sistema de colas del Real Madrid CF.",
-                card_locked: "● IP Bloqueada por Firewall",
-                card_res: "Licencia Residencial",
-                feat_1: "Bypass Queue Engine v4.1",
-                feat_2: "Handshake 100% Garantizado",
-                feat_3: "Latencia Residencial < 30ms",
-                btn_buy: "Adquirir Licencia",
-                chat_head: "Soporte Técnico RAP",
-                pay_method: "Método de Pago",
-                email_label: "Email para Envío de Licencia",
-                btn_final: "Generar Portal de Pago",
-                chat_welcome: "Hola. El sistema está listo para la sesión del viernes. Soy el asistente de IA, ¿en qué puedo ayudarte hoy?",
-                chat_typing: "Escribiendo...",
-                chat_transfer: "Lo siento, no he entendido esa consulta. Voy a transferirte con un agente humano disponible inmediatamente para asistirte.",
-                chips: ["¿Cuál es el precio?", "¿Cómo funciona?", "¿Aceptan Binance?"]
-            },
-            en: {
-                hero_title: "Premium Residential Access",
-                hero_sub: "Bypass infrastructure optimized for the Real Madrid CF queue system.",
-                card_locked: "● IP Blocked by Firewall",
-                card_res: "Residential License",
-                feat_1: "Queue Engine Bypass v4.1",
-                feat_2: "100% Guaranteed Handshake",
-                feat_3: "Residential Latency < 30ms",
-                btn_buy: "Get License",
-                chat_head: "RAP Technical Support",
-                pay_method: "Payment Method",
-                email_label: "Email for License Delivery",
-                btn_final: "Generate Payment Portal",
-                chat_welcome: "Hello. The system is ready for Friday's session. I am the AI assistant, how can I help you today?",
-                chat_typing: "Typing...",
-                chat_transfer: "I am sorry, I didn't quite catch that. I am transferring you to a live human agent available to assist you immediately.",
-                chips: ["What is the price?", "How does it work?", "Accept Binance?"]
+        const config = {
+            chat_welcome: "Hello. The system is ready for the session. I am the AI assistant, how can I help you today?",
+            chat_typing: "Typing...",
+            chat_transfer: "I am sorry, I didn't quite catch that. I am transferring you to a live human agent available to assist you immediately.",
+            chips: ["What is the price?", "How does it work?", "Accept Binance?"],
+            responses: {
+                price: "Residential Premium access costs $120.00 USD per session. It guarantees the bypass of the queue system.",
+                work: "We use encrypted residential tunnels to skip the virtual queue. Upon payment, your IP is automatically linked to the node.",
+                crypto: "Yes, we accept Binance and any crypto wallet (BTC, ETH, USDT). Activation is instant after confirmation."
             }
         };
-
-        function changeLanguage() {
-            currentLang = document.getElementById('lang-toggle').value;
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if(i18n[currentLang][key]) el.innerText = i18n[currentLang][key];
-            });
-            // Reset Chat
-            document.getElementById('chat-msgs').innerHTML = `<div class="msg-bot">${i18n[currentLang].chat_welcome}</div>`;
-            renderChips();
-        }
 
         function renderChips() {
             const container = document.getElementById('chat-suggestions');
             container.innerHTML = '';
-            i18n[currentLang].chips.forEach(text => {
+            config.chips.forEach(text => {
                 const btn = document.createElement('button');
                 btn.className = 'chip text-white';
                 btn.innerText = text;
@@ -304,28 +261,23 @@
             const typing = document.createElement('div');
             typing.className = 'msg-bot italic text-slate-500';
             typing.id = 'ai-typing';
-            typing.innerText = i18n[currentLang].chat_typing;
+            typing.innerText = config.chat_typing;
             document.getElementById('chat-msgs').appendChild(typing);
             document.getElementById('chat-msgs').scrollTop = 9999;
 
             setTimeout(() => {
                 if(document.getElementById('ai-typing')) document.getElementById('ai-typing').remove();
                 
-                let response = i18n[currentLang].chat_transfer;
+                let response = config.chat_transfer;
                 const low = text.toLowerCase();
 
-                // Intent Logic
-                if(low.includes('hola') || low.includes('hello')) response = i18n[currentLang].chat_welcome;
-                else if(low.includes('precio') || low.includes('costo') || low.includes('price') || low.includes('cuanto')) {
-                    response = currentLang === 'es' ? "El acceso Residencial Premium cuesta $47 USD por sesión. Garantiza el bypass del sistema de colas." : "Residential Premium access costs $47 USD per session. It guarantees the bypass of the queue system.";
-                } else if(low.includes('funciona') || low.includes('work') || low.includes('bypass')) {
-                    response = currentLang === 'es' ? "Utilizamos túneles residenciales cifrados para saltar la cola virtual. Al pagar, tu IP se vincula al nodo automáticamente." : "We use encrypted residential tunnels to skip the virtual queue. Upon payment, your IP is automatically linked to the node.";
-                } else if(low.includes('binance') || low.includes('cripto') || low.includes('crypto')) {
-                    response = currentLang === 'es' ? "Sí, aceptamos Binance y cualquier billetera cripto (BTC, ETH, USDT). La activación es instantánea tras la confirmación." : "Yes, we accept Binance and any crypto wallet (BTC, ETH, USDT). Activation is instant after confirmation.";
-                }
+                if(low.includes('hello') || low.includes('hi')) response = config.chat_welcome;
+                else if(low.includes('price') || low.includes('cost') || low.includes('how much')) response = config.responses.price;
+                else if(low.includes('work') || low.includes('how') || low.includes('bypass')) response = config.responses.work;
+                else if(low.includes('binance') || low.includes('crypto') || low.includes('usdt')) response = config.responses.crypto;
 
                 addMsg(response, 'bot');
-            }, 1800);
+            }, 1500);
         }
 
         function addMsg(text, type) {
@@ -359,7 +311,7 @@
                     document.getElementById('payment-content').style.display = 'block';
                     startLedger();
                 }, 3000);
-            } else { alert('Error: Email required.'); }
+            } else { alert('Error: Valid email required.'); }
         }
 
         function closeModal() { document.getElementById('crypto-modal').style.display = 'none'; }
@@ -375,13 +327,13 @@
             setInterval(() => {
                 const item = document.createElement('div');
                 item.className = "text-[9px] border-b border-slate-800 pb-2 animate-pulse";
-                item.innerHTML = `<div class="flex justify-between text-slate-400"><span>0x${Math.random().toString(16).slice(2,5)}...</span> <span class="text-green-500">Confirmed</span></div><div class="text-white font-mono">47.00 USD</div>`;
+                item.innerHTML = `<div class="flex justify-between text-slate-400"><span>0x${Math.random().toString(16).slice(2,5)}...</span> <span class="text-green-500">Confirmed</span></div><div class="text-white font-mono">120.00 USD</div>`;
                 ledgerBox.prepend(item);
                 if(ledgerBox.children.length > 4) ledgerBox.lastChild.remove();
             }, 7000);
         }
 
-        const feeds = ["User 0x4a...2e activated Friday Pass", "Bypass success: Real Madrid Session", "User dev***@gmail.com activated tunnel"];
+        const feeds = ["User 0x4a...2e activated Pass", "Bypass success: Session active", "User dev***@gmail.com activated tunnel"];
         setInterval(() => {
             const toast = document.getElementById('activity-toast');
             document.getElementById('activity-text').innerText = feeds[Math.floor(Math.random() * feeds.length)];
@@ -390,7 +342,11 @@
         }, 18000);
 
         document.getElementById('chat-input-field').addEventListener("keypress", (e) => { if (e.key === "Enter") userSendMessage(); });
-        window.onload = changeLanguage;
+        
+        window.onload = () => {
+            document.getElementById('chat-msgs').innerHTML = `<div class="msg-bot">${config.chat_welcome}</div>`;
+            renderChips();
+        };
     </script>
 </body>
 </html>

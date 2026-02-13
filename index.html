@@ -3,54 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>RAP GATEWAY | Premium Residential Node Access</title>
-    <meta name="title" content="RAP GATEWAY | Premium Residential Node Access">
-    <meta name="description" content="Enterprise-grade residential tunnel allocation for high-demand event ticketing. Optimized for LiverpoolFC and Arsenal sessions.">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="RAP GATEWAY | Secure Infrastructure">
-    <meta property="og:description" content="Residential node allocation active. Handshake bypass v4.1 enabled for upcoming session.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000&auto=format&fit=crop">
-
+    <title>Royal Mail API | Enterprise Shipping Gateway</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap');
         
-        body { background-color: #05070a; color: white; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; overflow-x: hidden; }
+        :root {
+            --rm-red: #e50012;
+        }
+
+        body { background-color: #0a0a0a; color: white; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; overflow-x: hidden; }
         .checkout-body { background-color: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; display: none; min-height: 100vh; }
         
-        .btn-blue { background: #2563eb; transition: all 0.3s ease; border: none; cursor: pointer; }
-        .btn-blue:hover { background: #1d4ed8; transform: translateY(-1px); }
-        .card-plan { background: #0f172a; border: 1px solid #1e293b; }
+        .btn-red { background: var(--rm-red); transition: all 0.3s ease; border: none; cursor: pointer; color: white; }
+        .btn-red:hover { background: #c40010; transform: translateY(-1px); }
+        .card-plan { background: #111111; border: 1px solid #222; transition: border 0.3s; }
+        .card-plan:hover { border-color: var(--rm-red); }
         
         /* Chat Styling */
         #chat-window { display: none; position: fixed; bottom: 90px; right: 20px; width: 320px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; z-index: 5001; box-shadow: 0 15px 40px rgba(0,0,0,0.6); color: white; }
-        .chat-header { background: #2563eb; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-radius: 12px 12px 0 0; }
+        .chat-header { background: var(--rm-red); padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-radius: 12px 12px 0 0; }
         .chat-body { height: 250px; padding: 15px; overflow-y: auto; font-size: 0.85rem; background: #0d1117; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
-        .msg-bot { background: #21262d; padding: 8px 12px; border-radius: 12px 12px 12px 0; align-self: flex-start; max-width: 85%; line-height: 1.4; }
-        .msg-user { background: #2563eb; padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; }
+        .msg-bot { background: #21262d; padding: 8px 12px; border-radius: 12px 12px 12px 0; align-self: flex-start; max-width: 85%; }
+        .msg-user { background: var(--rm-red); padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; }
         .chat-input { border-top: 1px solid #30363d; padding: 10px; background: #161b22; display: flex; gap: 8px; border-radius: 0 0 12px 12px; }
-        .chat-bubble { position: fixed; bottom: 20px; right: 20px; background: #2563eb; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); cursor: pointer; z-index: 5000; transition: transform 0.2s; }
+        .chat-bubble { position: fixed; bottom: 20px; right: 20px; background: var(--rm-red); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); cursor: pointer; z-index: 5000; }
         
-        /* Suggestion Chips */
-        .chip { background: #21262d; border: 1px solid #30363d; padding: 4px 10px; border-radius: 15px; font-size: 10px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-        .chip:hover { background: #2563eb; border-color: #2563eb; }
+        /* Modals & Toasts */
+        #activity-toast { position: fixed; bottom: 100px; left: 20px; background: #1a1a1a; border: 1px solid var(--rm-red); padding: 12px 16px; border-radius: 8px; display: none; font-size: 0.75rem; z-index: 999; animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 
-        /* Notification Toast */
-        #activity-toast { position: fixed; bottom: 100px; left: 20px; background: #1e293b; border: 1px solid #3b82f6; padding: 12px 16px; border-radius: 8px; display: none; font-size: 0.75rem; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.5); animation: slideIn 0.5s ease; }
-        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        #crypto-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 6000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 650px; border-radius: 12px; padding: 30px; color: #1e293b; position: relative; }
+        .crypto-row { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .address-text { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #334155; word-break: break-all; }
+        .copy-btn { color: var(--rm-red); cursor: pointer; padding: 8px; background: #fff1f1; border-radius: 4px; }
 
-        /* Crypto Modal */
-        #crypto-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 6000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; width: 100%; max-width: 650px; border-radius: 16px; padding: 30px; color: #1e293b; position: relative; }
-        .crypto-row { background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .address-text { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #475569; word-break: break-all; max-width: 85%; }
-        .copy-btn { font-size: 0.75rem; color: #2563eb; cursor: pointer; padding: 6px; border-radius: 4px; background: #eff6ff; width: 30px; text-align: center; }
-
-        #verify-screen { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .spinner { width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        .spinner { width: 40px; height: 40px; border: 3px solid #333; border-top: 3px solid var(--rm-red); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
@@ -59,237 +49,153 @@
     <div id="activity-toast">
         <div class="flex items-center gap-3">
             <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-            <span id="activity-text">User 0x4f...a2 activated Resident License</span>
+            <span id="activity-text">API License activated for User 0x7f...a1</span>
         </div>
     </div>
 
     <div id="crypto-modal">
-        <div id="verify-screen">
+        <div id="verify-screen" class="flex flex-col items-center">
             <div class="spinner"></div>
-            <h3 class="text-xl font-bold text-white mb-2">Initiating Infrastructure Handshake...</h3>
-            <p class="text-slate-400 text-sm font-mono">Allocating residential tunnel nodes...</p>
+            <h3 class="text-xl font-bold text-white mb-2">Connecting to Royal Mail API Clusters...</h3>
+            <p class="text-slate-400 text-sm font-mono">Securing handshake with mainnet...</p>
         </div>
 
         <div class="modal-content" id="payment-content" style="display: none;">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400"><i class="fa-solid fa-xmark"></i></button>
-            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
             <div class="grid md:grid-cols-5 gap-6">
                 <div class="md:col-span-3">
-                    <h3 class="text-xl font-bold mb-1">Finalize Order</h3>
-                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-4 tracking-widest">Global Proxy Infrastructure Access</p>
+                    <h3 class="text-xl font-bold mb-1">Finalize Subscription</h3>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-5 tracking-widest">Enterprise License Status: Pending</p>
                     
-                    <div class="max-h-[300px] overflow-y-auto pr-2 space-y-2">
+                    <div class="max-h-[320px] overflow-y-auto pr-2">
                         <div class="crypto-row">
-                            <div><p class="text-[9px] font-bold text-orange-500 uppercase">Bitcoin (BTC)</p><p class="address-text" id="btc-addr">bc1qt7zlwlmamph8vt4d0dwdjjnq8yehgvjr6883va</p></div>
+                            <div class="w-full">
+                                <p class="text-[9px] font-black text-blue-600 uppercase">Litecoin (LTC)</p>
+                                <p class="address-text" id="ltc-addr">LZCgp3ASVpgNhMC1BAvzvSTxMthQDVuRWq</p>
+                            </div>
+                            <i class="fa-solid fa-copy copy-btn" onclick="copyText('ltc-addr', this)"></i>
+                        </div>
+                        <div class="crypto-row">
+                            <div class="w-full">
+                                <p class="text-[9px] font-black text-orange-500 uppercase">Bitcoin (BTC)</p>
+                                <p class="address-text" id="btc-addr">bc1qt7zlwlmamph8vt4d0dwdjjnq8yehgvjr6883va</p>
+                            </div>
                             <i class="fa-solid fa-copy copy-btn" onclick="copyText('btc-addr', this)"></i>
                         </div>
                         <div class="crypto-row">
-                            <div><p class="text-[9px] font-bold text-indigo-500 uppercase">Ethereum (ETH)</p><p class="address-text" id="eth-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
-                            <i class="fa-solid fa-copy copy-btn" onclick="copyText('eth-addr', this)"></i>
-                        </div>
-                        <div class="crypto-row">
-                            <div><p class="text-[9px] font-bold text-purple-500 uppercase">Solana (SOL)</p><p class="address-text" id="sol-addr">37TkwujqyjCCREcUePrWeHVMwU3ZUuGUrUR9xzbbpmAH</p></div>
-                            <i class="fa-solid fa-copy copy-btn" onclick="copyText('sol-addr', this)"></i>
-                        </div>
-                        <div class="crypto-row">
-                            <div><p class="text-[9px] font-bold text-teal-600 uppercase">USDT (ERC20/BEP20)</p><p class="address-text" id="usdt-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p></div>
+                            <div class="w-full">
+                                <p class="text-[9px] font-black text-teal-600 uppercase">USDT (ERC20)</p>
+                                <p class="address-text" id="usdt-addr">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</p>
+                            </div>
                             <i class="fa-solid fa-copy copy-btn" onclick="copyText('usdt-addr', this)"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-2 bg-slate-900 rounded-xl p-4 border border-slate-800">
-                    <h4 class="text-[10px] font-black text-blue-400 uppercase mb-3 flex items-center gap-2">
-                        <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-                        Network Ledger
+                <div class="md:col-span-2 bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+                    <h4 class="text-[10px] font-black text-red-500 uppercase mb-3 flex items-center gap-2">
+                        <span class="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
+                        Status: Waiting
                     </h4>
                     <div class="space-y-3" id="ledger-box">
-                        <div class="text-[9px] border-b border-slate-800 pb-2">
-                            <div class="flex justify-between text-slate-400"><span>0x7...d1</span> <span class="text-green-500">Confirmed</span></div>
-                            <div class="flex justify-between text-white font-mono"><span>120.00 USD</span> <span>BTC</span></div>
+                        <div class="text-[9px] border-b border-zinc-800 pb-2">
+                            <div class="flex justify-between text-slate-400"><span>0x4...e2</span> <span class="text-green-500">Confirmed</span></div>
+                            <div class="text-white font-mono">$42.00 (LTC)</div>
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-800">
-                        <p class="text-[9px] text-slate-500 mb-1">Bypass Probability: <span class="text-blue-400 font-bold">100%</span></p>
-                        <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
-                            <div class="bg-blue-500 h-full w-[100%] shadow-[0_0_8px_#3b82f6]"></div>
-                        </div>
+                    <div class="mt-4 pt-3 border-t border-zinc-800 text-center">
+                        <p class="text-[10px] text-slate-500 mb-1 italic text-center">Auto-detecting blockchain confirmation...</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-6 p-3 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-circle-notch fa-spin text-blue-500 text-xs"></i>
-                    <p class="text-[10px] text-blue-700 font-medium">Monitoring blockchain confirmations...</p>
-                </div>
-                <span class="text-[10px] font-black text-blue-600 bg-blue-100 px-2 py-0.5 rounded uppercase">Auto-Scan Active</span>
             </div>
         </div>
     </div>
 
     <div id="homepage">
+        <div class="chat-bubble" onclick="toggleChat()"><i class="fa-solid fa-headset text-2xl text-white"></i></div>
         <div id="chat-window">
-            <div class="chat-header"><span id="chat-header-text">RAP Technical Support</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
-            <div class="chat-body" id="chat-msgs"></div>
-            
-            <div id="chat-suggestions" class="px-3 pb-3 bg-[#0d1117] flex gap-2 overflow-x-auto no-scrollbar">
-                </div>
-
+            <div class="chat-header"><span>API Support</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="chat-body" id="chat-msgs">
+                <div class="msg-bot">Welcome to the Royal Mail Developer Portal. How can I assist with your API integration?</div>
+            </div>
             <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="Type a message..." class="bg-transparent border-none outline-none text-xs flex-1 text-white">
-                <button onclick="userSendMessage()"><i class="fa-solid fa-paper-plane text-blue-500"></i></button>
+                <input type="text" id="chat-input-field" placeholder="Ask a question..." class="bg-transparent border-none outline-none text-xs flex-1 text-white">
+                <button onclick="userSendMessage()"><i class="fa-solid fa-paper-plane text-red-500"></i></button>
             </div>
         </div>
-        <div class="chat-bubble" onclick="toggleChat()"><i class="fa-solid fa-comment-dots text-2xl text-white"></i></div>
 
-        <nav class="sticky top-0 z-50 px-6 py-4 bg-[#05070a]/80 backdrop-blur-md border-b border-slate-900 flex items-center justify-between">
+        <nav class="sticky top-0 z-50 px-6 py-4 bg-[#0a0a0a]/90 border-b border-zinc-800 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <div class="bg-blue-600 p-1.5 rounded-lg"><i class="fa-solid fa-network-wired text-white"></i></div>
-                <span class="text-xl font-extrabold tracking-tight italic uppercase">RAP<span class="text-blue-500">Gateway</span></span>
+                <div class="bg-[#e50012] p-1.5 rounded-sm"><i class="fa-solid fa-box-open text-white"></i></div>
+                <span class="text-xl font-extrabold tracking-tight uppercase">Royal Mail <span class="text-[#e50012]">API</span></span>
             </div>
-            <div class="flex items-center gap-4">
-                <button class="btn-blue px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Status: Online</button>
+            <div class="text-[10px] font-bold text-green-500 uppercase flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span> System Operational
             </div>
         </nav>
 
-        <header class="max-w-4xl mx-auto px-6 py-24 text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Premium Residential Access</h1>
-            <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Bypass infrastructure optimized for the LiverpoolFC queue system.</p>
+        <header class="max-w-4xl mx-auto px-6 py-20 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Logistics Automation at Scale.</h1>
+            <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">Generate labels, track parcels, and manage global shipping directly from your application.</p>
         </header>
 
-        <section class="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-2 gap-8">
-            <div class="card-plan p-10 rounded-3xl opacity-30 cursor-not-allowed">
-                <h3 class="text-xs uppercase font-black text-slate-500 mb-2">Public Nodes</h3>
+        <section class="max-w-5xl mx-auto px-6 pb-32 grid md:grid-cols-2 gap-8">
+            <div class="card-plan p-10 rounded-sm opacity-50 cursor-not-allowed">
+                <h3 class="text-xs uppercase font-black text-slate-500 mb-2">Sandbox</h3>
                 <div class="text-4xl font-bold mb-6">$0</div>
-                <p class="text-sm text-red-500 mb-6 font-bold">● IP Blocked by Firewall</p>
-                <div class="w-full py-4 text-center border border-slate-800 rounded-xl font-bold text-slate-600 text-sm">NOT ELIGIBLE</div>
+                <p class="text-xs text-zinc-500 mb-6">Restricted to 5 test labels. No live tracking data available.</p>
+                <div class="w-full py-3 text-center border border-zinc-800 text-zinc-600 text-xs font-bold">LIMITED ACCESS</div>
             </div>
 
-            <div class="card-plan p-10 rounded-3xl border-blue-600 shadow-2xl shadow-blue-900/20 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-blue-600 text-[10px] font-bold px-4 py-1 rounded-bl-lg uppercase">Optimized</div>
-                <h3 class="text-xs uppercase font-black text-blue-500 mb-2">Residential License</h3>
-                <div class="text-4xl font-bold mb-6">$120.00 <span class="text-sm text-slate-500 font-normal">/ session</span></div>
+            <div class="card-plan p-10 rounded-sm border-red-600 relative overflow-hidden shadow-2xl shadow-red-900/10">
+                <div class="absolute top-0 right-0 bg-[#e50012] text-[9px] font-black px-4 py-1 uppercase">Recommended</div>
+                <h3 class="text-xs uppercase font-black text-red-500 mb-2">Enterprise Gateway</h3>
+                <div class="text-4xl font-bold mb-6">$42.00 <span class="text-sm text-slate-500 font-normal">/ lifetime</span></div>
                 <ul class="text-sm space-y-3 mb-10 text-slate-300">
-                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Bypass Queue Engine v4.1</li>
-                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 100% Guaranteed Handshake</li>
-                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Residential Latency < 30ms</li>
+                    <li><i class="fa-solid fa-check text-red-500 mr-2"></i> Unlimited API Endpoint Requests</li>
+                    <li><i class="fa-solid fa-check text-red-500 mr-2"></i> Real-time Webhook Integration</li>
+                    <li><i class="fa-solid fa-check text-red-500 mr-2"></i> 24/7 Developer Priority Support</li>
                 </ul>
-                <button onclick="showCheckout()" class="btn-blue w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-white">Get License</button>
+                <button onclick="showCheckout()" class="btn-red w-full py-4 font-bold text-xs uppercase tracking-widest">Upgrade to Enterprise</button>
             </div>
         </section>
     </div>
 
     <div id="checkout-section" class="checkout-body">
-        <div class="max-w-[1000px] mx-auto px-5 pt-8 flex justify-between items-center text-[#1e293b]">
-            <div class="flex items-center gap-2 font-black text-xl italic"><span class="bg-blue-600 text-white px-2 py-0.5 rounded">RAP</span> GATEWAY</div>
-            <button onclick="window.location.reload()" class="text-xs font-bold text-slate-400 uppercase">← Back</button>
+        <div class="max-w-[1000px] mx-auto px-5 pt-8 flex justify-between items-center">
+            <div class="flex items-center gap-2 font-black text-xl"><span class="bg-[#e50012] text-white px-2">ROYAL MAIL</span> API</div>
+            <button onclick="window.location.reload()" class="text-xs font-bold text-slate-400 hover:text-red-600 uppercase">Back to Home</button>
         </div>
         
-        <div class="max-w-[1000px] mx-auto grid md:grid-cols-3 gap-10 px-5 mt-12 pb-20">
-            <div class="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-xl font-bold mb-6">Payment Method</h2>
-                <div class="border-2 border-blue-500 rounded-xl p-5 bg-blue-50 flex items-center justify-between">
+        <div class="max-w-[1000px] mx-auto grid md:grid-cols-3 gap-10 px-5 mt-12">
+            <div class="md:col-span-2 bg-white p-8 rounded-sm shadow-xl border border-slate-200">
+                <h2 class="text-xl font-bold mb-6">Secure Activation</h2>
+                <div class="border-2 border-red-500 rounded p-5 bg-red-50 flex items-center justify-between mb-8">
                     <div>
-                        <p class="font-bold text-sm text-blue-900">Global Crypto Transfer</p>
-                        <p class="text-[11px] text-blue-700">Automatic activation via Hash scanning.</p>
+                        <p class="font-bold text-sm text-red-900">Direct Ledger Activation</p>
+                        <p class="text-[11px] text-red-700">Immediate key generation via crypto hash.</p>
                     </div>
-                    <i class="fa-brands fa-bitcoin text-2xl text-blue-600"></i>
+                    <i class="fa-brands fa-litecoin text-2xl text-red-600"></i>
                 </div>
-                
-                <div class="mt-10">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-2 tracking-widest">Email for License Delivery</label>
-                    <input type="email" id="email-field" placeholder="example@email.com" class="w-full border border-slate-200 rounded-xl p-4 outline-none focus:border-blue-500 text-[#1e293b] text-sm transition-all">
+                <div>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase mb-2">Delivery Email</label>
+                    <input type="email" id="email-field" placeholder="developer@company.com" class="w-full border border-slate-200 rounded p-4 outline-none focus:border-red-500 text-sm">
                 </div>
-                
-                <button onclick="startVerification()" class="btn-blue w-full mt-10 py-5 rounded-xl font-bold text-white uppercase tracking-widest text-sm shadow-lg shadow-blue-200">Generate Payment Portal</button>
+                <button onclick="startVerification()" class="btn-red w-full mt-10 py-5 rounded-sm font-bold uppercase tracking-widest text-sm shadow-lg">Generate Payment Portal</button>
             </div>
 
-            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 h-fit">
-                <h2 class="text-lg font-bold mb-6">Node Summary</h2>
+            <div class="bg-slate-50 p-8 rounded-sm border border-slate-200 h-fit">
+                <h2 class="text-lg font-bold mb-4">Summary</h2>
                 <div class="space-y-4 text-sm">
-                    <div class="flex justify-between text-slate-500"><span>Residential License</span><span class="font-bold text-slate-800">$120.00</span></div>
-                    <div class="flex justify-between text-slate-500"><span>Network Fee</span><span class="font-bold text-green-600">FREE</span></div>
-                    <hr class="border-slate-200">
-                    <div class="flex justify-between text-xl font-black text-[#1e293b] pt-2"><span>Total</span><span>$120.00</span></div>
+                    <div class="flex justify-between text-slate-500"><span>Enterprise License</span><span class="font-bold text-slate-900">$42.00</span></div>
+                    <div class="flex justify-between text-slate-500"><span>Maintenance Fee</span><span class="text-green-600 font-bold">WAIVED</span></div>
+                    <div class="flex justify-between text-xl font-black text-slate-900 pt-4 border-t"><span>Total</span><span>$42.00</span></div>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-8 leading-relaxed italic">By proceeding, the system will assign a unique residential IP to your email for 24 hours.</p>
             </div>
         </div>
     </div>
 
     <script>
-        const notificationSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-
-        const config = {
-            chat_welcome: "Hello. The system is ready for the session. I am the AI assistant, how can I help you today?",
-            chat_typing: "Typing...",
-            chat_transfer: "I am sorry, I didn't quite catch that. I am transferring you to a live human agent available to assist you immediately.",
-            chips: ["What is the price?", "How does it work?", "Accept Binance?"],
-            responses: {
-                price: "Residential Premium access costs $120.00 USD per session. It guarantees the bypass of the queue system.",
-                work: "We use encrypted residential tunnels to skip the virtual queue. Upon payment, your IP is automatically linked to the node.",
-                crypto: "Yes, we accept Binance and any crypto wallet (BTC, ETH, USDT). Activation is instant after confirmation."
-            }
-        };
-
-        function renderChips() {
-            const container = document.getElementById('chat-suggestions');
-            container.innerHTML = '';
-            config.chips.forEach(text => {
-                const btn = document.createElement('button');
-                btn.className = 'chip text-white';
-                btn.innerText = text;
-                btn.onclick = () => {
-                    document.getElementById('chat-input-field').value = text;
-                    userSendMessage();
-                };
-                container.appendChild(btn);
-            });
-            container.style.display = 'flex';
-        }
-
-        function userSendMessage() {
-            const input = document.getElementById('chat-input-field');
-            const text = input.value.trim();
-            if(!text) return;
-
-            addMsg(text, 'user');
-            input.value = '';
-            document.getElementById('chat-suggestions').style.display = 'none';
-
-            const typing = document.createElement('div');
-            typing.className = 'msg-bot italic text-slate-500';
-            typing.id = 'ai-typing';
-            typing.innerText = config.chat_typing;
-            document.getElementById('chat-msgs').appendChild(typing);
-            document.getElementById('chat-msgs').scrollTop = 9999;
-
-            setTimeout(() => {
-                if(document.getElementById('ai-typing')) document.getElementById('ai-typing').remove();
-                
-                let response = config.chat_transfer;
-                const low = text.toLowerCase();
-
-                if(low.includes('hello') || low.includes('hi')) response = config.chat_welcome;
-                else if(low.includes('price') || low.includes('cost') || low.includes('how much')) response = config.responses.price;
-                else if(low.includes('work') || low.includes('how') || low.includes('bypass')) response = config.responses.work;
-                else if(low.includes('binance') || low.includes('crypto') || low.includes('usdt')) response = config.responses.crypto;
-
-                addMsg(response, 'bot');
-            }, 1500);
-        }
-
-        function addMsg(text, type) {
-            const chatBody = document.getElementById('chat-msgs');
-            const div = document.createElement('div');
-            div.className = type === 'bot' ? 'msg-bot' : 'msg-user';
-            div.innerText = text;
-            chatBody.appendChild(div);
-            chatBody.scrollTop = chatBody.scrollHeight;
-            if(type === 'bot') notificationSound.play().catch(e => {});
-        }
-
         function toggleChat() { 
             const win = document.getElementById('chat-window');
             win.style.display = (win.style.display === 'block') ? 'none' : 'block'; 
@@ -303,15 +209,15 @@
 
         function startVerification() { 
             const email = document.getElementById('email-field').value;
-            if(email.includes('@') && email.length > 5) {
+            if(email.includes('@')) {
                 document.getElementById('crypto-modal').style.display = 'flex';
                 document.getElementById('verify-screen').style.display = 'flex';
                 setTimeout(() => { 
                     document.getElementById('verify-screen').style.display = 'none'; 
                     document.getElementById('payment-content').style.display = 'block';
                     startLedger();
-                }, 3000);
-            } else { alert('Error: Valid email required.'); }
+                }, 2500);
+            } else { alert('Please enter a valid developer email.'); }
         }
 
         function closeModal() { document.getElementById('crypto-modal').style.display = 'none'; }
@@ -326,27 +232,18 @@
             const ledgerBox = document.getElementById('ledger-box');
             setInterval(() => {
                 const item = document.createElement('div');
-                item.className = "text-[9px] border-b border-slate-800 pb-2 animate-pulse";
-                item.innerHTML = `<div class="flex justify-between text-slate-400"><span>0x${Math.random().toString(16).slice(2,5)}...</span> <span class="text-green-500">Confirmed</span></div><div class="text-white font-mono">120.00 USD</div>`;
+                item.className = "text-[9px] border-b border-zinc-800 pb-2 animate-pulse mt-2";
+                item.innerHTML = `<div class="flex justify-between text-slate-400"><span>0x${Math.random().toString(16).slice(2,5)}...</span> <span class="text-green-500">Confirmed</span></div><div class="text-white font-mono">$42.00</div>`;
                 ledgerBox.prepend(item);
-                if(ledgerBox.children.length > 4) ledgerBox.lastChild.remove();
-            }, 7000);
+                if(ledgerBox.children.length > 3) ledgerBox.lastChild.remove();
+            }, 8000);
         }
 
-        const feeds = ["User 0x4a...2e activated Pass", "Bypass success: Session active", "User dev***@gmail.com activated tunnel"];
         setInterval(() => {
             const toast = document.getElementById('activity-toast');
-            document.getElementById('activity-text').innerText = feeds[Math.floor(Math.random() * feeds.length)];
             toast.style.display = 'block';
-            setTimeout(() => toast.style.display = 'none', 5000);
-        }, 18000);
-
-        document.getElementById('chat-input-field').addEventListener("keypress", (e) => { if (e.key === "Enter") userSendMessage(); });
-        
-        window.onload = () => {
-            document.getElementById('chat-msgs').innerHTML = `<div class="msg-bot">${config.chat_welcome}</div>`;
-            renderChips();
-        };
+            setTimeout(() => toast.style.display = 'none', 4000);
+        }, 15000);
     </script>
 </body>
 </html>
